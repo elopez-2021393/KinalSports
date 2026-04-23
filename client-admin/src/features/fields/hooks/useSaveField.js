@@ -4,7 +4,7 @@ export const useSaveField = () => {
     const createField = useFieldsStore((state) => state.createField);
     const updateField = useFieldsStore((state) => state.updateField);
 
-    const saveField = async (data, id) => {
+    const saveField = async (data, fieldId = null) => {
         const formData = new FormData();
 
         formData.append("fieldName", data.fieldName);
@@ -17,8 +17,8 @@ export const useSaveField = () => {
             formData.append("image", data.photo[0]);
         }
 
-        if (id) {
-            await updateField(id, formData);
+        if (fieldId) {
+            await updateField(fieldId, formData);
         } else {
             await createField(formData);
         }
