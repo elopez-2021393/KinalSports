@@ -724,6 +724,7 @@ C:\Users\Informatica\Documents\IN6AM\KinalSports\authenthication-service\auth-se
 C:\Users\Informatica\Documents\IN6AM\KinalSports\authenthication-service\auth-service\src\AuthService.Api\obj\Debug\net8.0\AuthService.Api.csproj.CoreCompileInputs.cache
 C:\Users\Informatica\Documents\IN6AM\KinalSports\authenthication-service\auth-service\src\AuthService.Api\obj\Debug\net8.0\AuthService.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Informatica\Documents\IN6AM\KinalSports\authenthication-service\auth-service\src\AuthService.Api\obj\Debug\net8.0\AuthService.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Informatica\Documents\IN6AM\KinalSports\authenthication-service\auth-service\src\AuthService.Api\obj\Debug\net8.0\AuthService.Api.sourcelink.json
 C:\Users\Informatica\Documents\IN6AM\KinalSports\authenthication-service\auth-service\src\AuthService.Api\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Informatica\Documents\IN6AM\KinalSports\authenthication-service\auth-service\src\AuthService.Api\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Informatica\Documents\IN6AM\KinalSports\authenthication-service\auth-service\src\AuthService.Api\obj\Debug\net8.0\staticwebassets\msbuild.AuthService.Api.Microsoft.AspNetCore.StaticWebAssets.props
