@@ -68,7 +68,7 @@ export const useAuthStore = create(
                         });
 
                         showError(message);
-                        return{success: false, error: message};
+                        return { success: false, error: message };
                     }
 
                     set({
@@ -79,7 +79,7 @@ export const useAuthStore = create(
                         isAuthenticated: true,
                         loading: false,
                     })
-                    return{success: true};
+                    return { success: true };
                 } catch (err) {
                     const message = err.response?.data?.message || "Error al iniciar sesión";
                     set({ error: message, loading: false });
@@ -87,6 +87,6 @@ export const useAuthStore = create(
                 }
             }//Funcion para iniciar sesion
         }),//nose
-        {name: "auth-KS-IN6AM"},
+        { name: "auth-KS-IN6AM" },
     ),
 );

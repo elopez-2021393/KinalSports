@@ -112,3 +112,4 @@ axiosAuth.interceptors.response.use((res) => res, handleRefreshToken);
 axiosAdmin.interceptors.response.use((res) => res, handleRefreshToken);
 
 export { axiosAuth, axiosAdmin };
+export { handleRefreshToken };
