@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export const dbConnection = async () => {
-    try {
+    try{
         mongoose.connection.on('error', () => {
             console.error('Mongo DB | Error de conexión');
             mongoose.disconnect();
@@ -21,11 +21,11 @@ export const dbConnection = async () => {
         mongoose.connection.on('disconnected', () => {
             console.log('Mongo DB | Desconectado de mongo DB');
         });
-        await mongoose.connect(process.env.URI_MONGODB, {
+        await mongoose.connect(process.env.URI_MONGODB,{
             serverSelectionTimeoutMS: 5000,
             maxPoolSize: 10,
         });
-    } catch (err) {
+    }catch(err){
         console.error(`Kinal Sports - Error al conectar la db: ${err.message}`)
         process.exit(1);
     }
@@ -33,11 +33,11 @@ export const dbConnection = async () => {
 
 const gracefulShutdown = async (signal) => {
     console.log(`Mongo DB | Recibida señal de ${signal}, cerrando conexión a mongo DB...`);
-    try {
+    try{
         await mongoose.disconnect();
         console.log('Mongo DB | Conexión cerrada exitosamente')
         process.exit(0);
-    } catch (err) {
+    }catch(err){
         console.error(`Mongo DB | Error durante el cierre de la conexión: ${err.message}`)
         process.exit(1);
     }

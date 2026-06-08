@@ -17,8 +17,7 @@ const axiosAdmin = axios.create({
     'Content-Type': 'application/json',
   },
 });
-
-//INTERCEPTORES DE TOKENs
+// interceptores para adjuntar token a peticiones
 axiosAuth.interceptors.request.use((config) => {
   config._axiosClient = 'auth';
   const token = useAuthStore.getState().token;
@@ -33,10 +32,10 @@ axiosAdmin.interceptors.request.use((config) => {
   const token = useAuthStore.getState().token;
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
-  } //Extraer el token si no es undefined
+  }
   return config;
-}); //Crear la llave el autorization
-
+});
+// lógica de refreshtoken
 let _isRefreshing = false;
 let failedQueue = [];
 

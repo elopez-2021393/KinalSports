@@ -1,4 +1,4 @@
-import { axiosAdmin } from './api.js';
+import { axiosAdmin } from './api';
 
 export const getFields = async () => {
   return await axiosAdmin.get('/fields');
@@ -17,5 +17,5 @@ export const updateField = async (id, data) => {
 };
 
 export const deleteField = async (id) => {
-  return await axiosAdmin.put(`/fields/${id}/desactivate`);
+  return await axiosAdmin.put(`/fields/${id}/deactivate`);
 };

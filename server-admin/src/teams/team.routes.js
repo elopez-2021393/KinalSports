@@ -1,19 +1,19 @@
 import { Router } from 'express';
 import {
-    getTeams,
-    getTeamById,
-    createTeam,
-    updateTeam,
-    changeTeamStatus,
-    changeTeamManager,
+  getTeams,
+  getTeamById,
+  createTeam,
+  updateTeam,
+  changeTeamStatus,
+  changeTeamManager,
 } from './team.controller.js';
 import {
-    validateCreateTeam,
-    validateUpdateTeamRequest,
-    validateTeamStatusChange,
-    validateGetTeamById,
-    authorizeUpdateTeam,
-    validateChangeTeamManager,
+  validateCreateTeam,
+  validateUpdateTeamRequest,
+  validateTeamStatusChange,
+  validateGetTeamById,
+  authorizeUpdateTeam,
+  validateChangeTeamManager,
 } from '../../middlewares/team-validators.js';
 import { uploadTeamImage } from '../../middlewares/file-uploader.js';
 import { cleanupUploadedFileOnFinish } from '../../middlewares/delete-file-on-error.js';
@@ -28,12 +28,12 @@ router.get('/:id', authOrInternal, validateGetTeamById, getTeamById);
 
 // Rutas POST - Crear un equipo oficial (Solo ADMIN)
 router.post(
-    '/',
-    uploadTeamImage.single('logo'),
-    cleanupUploadedFileOnFinish,
-    validateCreateTeam,
-    requireRole('ADMIN_ROLE'), // Validar rol antes de subir logo
-    createTeam
+  '/',
+  uploadTeamImage.single('logo'),
+  cleanupUploadedFileOnFinish,
+  validateCreateTeam,
+  requireRole('ADMIN_ROLE'), // Validar rol antes de subir logo
+  createTeam
 );
 
 /**
@@ -41,34 +41,34 @@ router.post(
  * Note: authorizeUpdateTeam ya valida internamente el rol, por lo que va al inicio.
  */
 router.put(
-    '/:id',
-    uploadTeamImage.single('logo'),
-    cleanupUploadedFileOnFinish,
-    validateUpdateTeamRequest,
-    authorizeUpdateTeam,
-    updateTeam
+  '/:id',
+  uploadTeamImage.single('logo'),
+  cleanupUploadedFileOnFinish,
+  validateUpdateTeamRequest,
+  authorizeUpdateTeam,
+  updateTeam
 );
 
 // Gestión de estado y manager (Restringido solo a ADMIN)
 router.put(
-    '/:id/activate',
-    validateTeamStatusChange,
-    requireRole('ADMIN_ROLE'),
-    changeTeamStatus
+  '/:id/activate',
+  validateTeamStatusChange,
+  requireRole('ADMIN_ROLE'),
+  changeTeamStatus
 );
 
 router.put(
-    '/:id/deactivate',
-    validateTeamStatusChange,
-    requireRole('ADMIN_ROLE'),
-    changeTeamStatus
+  '/:id/deactivate',
+  validateTeamStatusChange,
+  requireRole('ADMIN_ROLE'),
+  changeTeamStatus
 );
 
 router.put(
-    '/:id/manager',
-    validateChangeTeamManager,
-    requireRole('ADMIN_ROLE'),
-    changeTeamManager
+  '/:id/manager',
+  validateChangeTeamManager,
+  requireRole('ADMIN_ROLE'),
+  changeTeamManager
 );
 
 export default router;

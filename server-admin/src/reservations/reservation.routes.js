@@ -1,15 +1,15 @@
 import { Router } from 'express';
 import {
-    getReservations,
-    getReservationById,
-    confirmReservation,
-    cancelReservation,
+  getReservations,
+  getReservationById,
+  confirmReservation,
+  cancelReservation,
 } from './reservation.controller.js';
 import {
-    validateGetReservations,
-    validateGetReservationById,
-    validateConfirmReservationRequest,
-    validateCancelReservationRequest,
+  validateGetReservations,
+  validateGetReservationById,
+  validateConfirmReservationRequest,
+  validateCancelReservationRequest,
 } from '../../middlewares/reservation-validators.js';
 import { checkReservationConflict } from '../../middlewares/reservation-conflict.js';
 
@@ -20,10 +20,10 @@ router.get('/', validateGetReservations, getReservations);
 router.get('/:id', validateGetReservationById, getReservationById);
 
 router.put(
-    '/:id/confirm',
-    validateConfirmReservationRequest,
-    checkReservationConflict,
-    confirmReservation
+  '/:id/confirm',
+  validateConfirmReservationRequest,
+  checkReservationConflict,
+  confirmReservation
 );
 
 router.put('/:id/cancel', validateCancelReservationRequest, cancelReservation);

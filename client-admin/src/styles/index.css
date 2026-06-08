@@ -1,8 +1,7 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-/* Solamente estilos globales*/
 @theme {
-  --color-main-blue: #0f6bf5;
+  --color-main-blue: #08316d;
 }
 
 :root {
@@ -37,9 +36,8 @@
 .sidebar-underline {
   position: relative;
 }
-
 .sidebar-underline.active::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 16px;
   right: 16px;

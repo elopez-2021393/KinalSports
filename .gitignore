@@ -20,3 +20,34 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+
+# Node.js
+node_modules/
+**/node_modules/
+
+# PNPM
+.pnpm-store/
+.pnpm/
+
+# Dependencias
+package-lock.json
+pnpm-lock.yaml
+
+# Builds
+dist/
+build/
+coverage/
+
+# Logs
+*.log
+
+# Vite
+.vite/
+
+# Expo
+.expo/
+.expo-shared/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

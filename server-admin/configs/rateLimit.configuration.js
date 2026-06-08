@@ -10,7 +10,7 @@ export const requestLimit = rateLimit({
             success: false,
             message: 'Demasiadas peticiones desde esta IP, intenta de nuevo más tarde',
             error: 'RATE_LIMIT_EXCEEDED',
-            retryAfter: Math.round((req.rateLimit.resetTime - Date.now()) / 1000)
+            retryAfter: Math.round((req.rateLimit.resetTime - Date.now())/1000)
         })
     }
 })

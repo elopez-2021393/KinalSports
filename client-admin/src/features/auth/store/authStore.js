@@ -1,7 +1,12 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { login as loginRequest, register as registerRequest } from '../../../shared/apis';
-import { showError } from '../../../shared/utils/toast.js';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import {
+  login as loginRequest,
+  register as registerRequest,
+  forgotPassword as forgotPasswordRequest,
+  resetPassword as resetPasswordRequest,
+} from "../../../shared/api";
+import { showError } from "../../../shared/utils/toast.js";
 
 export const useAuthStore = create(
   persist(
@@ -17,26 +22,27 @@ export const useAuthStore = create(
       checkAuth: () => {
         const token = get().token;
         const role = get().user?.role;
-        const isAdmin = role === 'ADMIN_ROLE';
+        const isAdmin = role === "ADMIN_ROLE";
 
+        // Si hay token pero el rol no es admin, limpiamos la sesión.
         if (token && !isAdmin) {
           set({
             user: null,
             token: null,
             refreshToken: null,
             expiresAt: null,
-            isLoadingAuth: true,
             isAuthenticated: false,
-            error: 'No tienes permiso para acceder a esta aplicación',
+            isLoadingAuth: false,
+            error: "No tienes permisos para acceder como administrador.",
           });
           return;
-        } //Token valido pero el rol no es admin
+        }
 
         set({
           isLoadingAuth: false,
           isAuthenticated: Boolean(token) && isAdmin,
         });
-      }, //Chequear si esta autenticado el usuario
+      },
 
       logout: () => {
         set({
@@ -46,8 +52,7 @@ export const useAuthStore = create(
           expiresAt: null,
           isAuthenticated: false,
         });
-      }, //Función para cerrar sesion,
-
+      },
       login: async ({ emailOrUsername, password }) => {
         try {
           set({ loading: true, error: null });
@@ -85,23 +90,51 @@ export const useAuthStore = create(
           return { success: false, error: message };
         }
       }, //Funcion para iniciar sesion
-
+      
       register: async (formData) => {
         try {
           set({ loading: true, error: null });
           const { data } = await registerRequest(formData);
+          set({ loading: false });
           return {
             success: true,
             emailVerificationRequired: data?.emailVerificationRequired,
             data,
           };
         } catch (err) {
-          const message = err.response?.data?.message || 'Error al registrar usuario';
+          const message = err.response?.data?.message || "Error al registrarse";
           set({ error: message, loading: false });
           return { success: false, error: message };
         }
-      }, //Funcion para crear usuario
-    }), //nose
-    { name: 'auth-KS-IN6AM' }
-  )
+      },
+      forgotPassword: async (email) => {
+        try {
+          set({ loading: true, error: null });
+          const { data } = await forgotPasswordRequest(email);
+          set({ loading: false });
+          return { success: true, data };
+        } catch (err) {
+          const message =
+            err.response?.data?.message || "Error al enviar el correo";
+          set({ error: message, loading: false });
+          return { success: false, error: message };
+        }
+      },
+      resetPassword: async ({ token, newPassword }) => {
+        try {
+          set({ loading: true, error: null });
+          const { data } = await resetPasswordRequest(token, newPassword);
+          set({ loading: false });
+          return { success: true, data };
+        } catch (err) {
+          const message =
+            err.response?.data?.message || "Error al restablecer contraseña";
+          set({ error: message, loading: false });
+          return { success: false, error: message };
+        }
+      },
+      // ...rest of store logic
+    }),
+    { name: "auth-store" },
+  ),
 );

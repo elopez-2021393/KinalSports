@@ -1,15 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 import { AuthPage } from '../../features/auth/pages/AuthPage.jsx';
 import { DashboardPage } from '../layouts/DashboardPage.jsx';
+import { VerifyEmailPage } from '../../features/auth/pages/VerifyEmailPage.jsx';
 import { ProtectedRoutes } from './ProtectedRoutes.jsx';
 import { UnauthorizedPage } from '../../features/auth/pages/UnauthorizedPage.jsx';
-import { Fields } from '../../features/fields/components/Fields.jsx';
-import { Tournaments } from '../../features/tournaments/components/Tournaments.jsx';
 import { Teams } from '../../features/teams/components/Teams.jsx';
+import { Tournaments } from '../../features/tournaments/components/Tournaments.jsx';
 import { Users } from '../../features/users/components/Users.jsx';
 import { Reservations } from '../../features/reservations/components/Reservations.jsx';
+import { Fields } from '../../features/fields/components/Fields.jsx';
 import { RoleGuard } from './RoleGuard.jsx';
-import { VerifyEmailPage } from '../../features/auth/pages/VerifyEmailPage.jsx'
 
 export const AppRoutes = () => {
   return (
@@ -17,7 +17,6 @@ export const AppRoutes = () => {
       <Route path='/' element={<AuthPage />} />
       <Route path='/unauthorized' element={<UnauthorizedPage />} />
       <Route path='/verify-email' element={<VerifyEmailPage />} />
-
       <Route
         path='/dashboard/*'
         element={
